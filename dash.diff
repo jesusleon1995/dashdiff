@@ -1,17 +1,17 @@
-diff --git a/contrib/debian/examples/dash.conf b/contrib/debian/examples/dash.conf
+diff --git a/contrib/debian/examples/dashdiff.conf b/contrib/debian/examples/dashdiff.conf
 index 12580a2..eab04b8 100644
---- a/contrib/debian/examples/dash.conf
-+++ b/contrib/debian/examples/dash.conf
+--- a/contrib/debian/examples/dashdiff.conf
++++ b/contrib/debian/examples/dashdiff.conf
 @@ -44,11 +44,11 @@
  
  # Use as many addnode= settings as you like to connect to specific peers
  #addnode=69.164.218.197
--#addnode=10.0.0.2:9999
+-#addnode=10.0.0.2:10332
 +#addnode=10.0.0.2:10332
  
  # Alternatively use as many connect= settings as you like to connect ONLY to specific peers
  #connect=69.164.218.197
--#connect=10.0.0.1:9999
+-#connect=10.0.0.1:10332
 +#connect=10.0.0.1:10332
  
  # Listening mode, enabled by default except when 'connect' is being used
@@ -20,10 +20,10 @@ index 12580a2..eab04b8 100644
  #rpcallowip=2001:db8:85a3:0:0:8a2e:370:7334/96
  
  # Listen for RPC connections on this TCP port:
--#rpcport=9998
+-#rpcport=10333
 +rpcport=10333
  
- # You can use Dash or dashd to send commands to Dash/dashd
+ # You can use Dashdiff or dashdiffd to send commands to Dashdiff/dashdiffd
  # running on another host using this option:
 diff --git a/contrib/linearize/example-linearize-testnet.cfg b/contrib/linearize/example-linearize-testnet.cfg
 index 696ae22..343230d 100644
@@ -33,7 +33,7 @@ index 696ae22..343230d 100644
  rpcuser=someuser
  rpcpassword=somepassword
  host=127.0.0.1
--port=19998
+-port=11332
 +port=11332
  
  # bootstrap.dat hashlist settings (linearize-hashes)
@@ -46,7 +46,7 @@ index 09a66dc..e888932 100644
  rpcuser=someuser
  rpcpassword=somepassword
  host=127.0.0.1
--port=9998
+-port=10333
 +port=10332
  
  # bootstrap.dat hashlist settings (linearize-hashes)
@@ -59,7 +59,7 @@ index ee87cea..212e474 100755
  	if 'host' not in settings:
  		settings['host'] = '127.0.0.1'
  	if 'port' not in settings:
--		settings['port'] = 9998
+-		settings['port'] = 10333
 +		settings['port'] = 10332
  	if 'min_height' not in settings:
  		settings['min_height'] = 0
@@ -72,7 +72,7 @@ index 51a8422..8963ba1 100755
      testnet = config.get('testnet', '0')
      testnet = (int(testnet) > 0)  # 0/1 in config file, convert to True/False
      if not 'rpcport' in config:
--        config['rpcport'] = 19998 if testnet else 9998
+-        config['rpcport'] = 11332 if testnet else 9998
 +        config['rpcport'] = 11332 if testnet else 10332
      connect = "http://%s:%s@127.0.0.1:%s"%(config['rpcuser'], config['rpcpassword'], config['rpcport'])
      try:
@@ -112,7 +112,7 @@ index cf9d4fd..481df9a 100644
 +        pchMessageStart[2] = 0xa4;
 +        pchMessageStart[3] = 0xdc;
          vAlertPubKey = ParseHex("048240a8748a80a286b270ba126705ced4f2ce5a7847b3610ea3c06513150dade2a8512ed5ea86320824683fc0818f0ac019214973e677acd1244f6d0571fc5103");
--        nDefaultPort = 9999;
+-        nDefaultPort = 10332;
 -        nMaxTipAge = 6 * 60 * 60; // ~144 blocks behind -> 2 x fork detection time, was 24 * 60 * 60 in bitcoin
 +        nDefaultPort = 10332;
 +        nMaxTipAge = 0x7fffffff; //6 * 60 * 60; // ~144 blocks behind -> 2 x fork detection time, was 24 * 60 * 60 in bitcoin
@@ -128,22 +128,22 @@ index cf9d4fd..481df9a 100644
 +        assert(genesis.hashMerkleRoot == uint256S("0xa3bb7f15c718d763400874d21df9ef1196c62aad3b7eb37118e8e1b00dbf8a91"));
  
  
--        vSeeds.push_back(CDNSSeedData("dash.org", "dnsseed.dash.org"));
--        vSeeds.push_back(CDNSSeedData("dashdot.io", "dnsseed.dashdot.io"));
+-        vSeeds.push_back(CDNSSeedData("dashdiff.org", "dnsseed.dashdiff.org"));
+-        vSeeds.push_back(CDNSSeedData("dashdiffdot.io", "dnsseed.dashdiffdot.io"));
 -        vSeeds.push_back(CDNSSeedData("masternode.io", "dnsseed.masternode.io"));
--        vSeeds.push_back(CDNSSeedData("dashpay.io", "dnsseed.dashpay.io"));
+-        vSeeds.push_back(CDNSSeedData("dashdiffpay.io", "dnsseed.dashdiffpay.io"));
 +        vSeeds.push_back(CDNSSeedData("my-very-own-coin.org", "my-very-own-coin.org"));
-+        //vSeeds.push_back(CDNSSeedData("dash.org", "dnsseed.dash.org"));
-+        //vSeeds.push_back(CDNSSeedData("dashdot.io", "dnsseed.dashdot.io"));
++        //vSeeds.push_back(CDNSSeedData("dashdiff.org", "dnsseed.dashdiff.org"));
++        //vSeeds.push_back(CDNSSeedData("dashdiffdot.io", "dnsseed.dashdiffdot.io"));
 +        //vSeeds.push_back(CDNSSeedData("masternode.io", "dnsseed.masternode.io"));
-+        //vSeeds.push_back(CDNSSeedData("dashpay.io", "dnsseed.dashpay.io"));
++        //vSeeds.push_back(CDNSSeedData("dashdiffpay.io", "dnsseed.dashdiffpay.io"));
  
-         // Dash addresses start with 'X'
+         // Dashdiff addresses start with 'X'
 -        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,76);
 +        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,28);
-         // Dash script addresses start with '7'
+         // Dashdiff script addresses start with '7'
          base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,16);
-         // Dash private keys start with '7' or 'X'
+         // Dashdiff private keys start with '7' or 'X'
 @@ -164,7 +165,7 @@ public:
  
          vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -173,12 +173,12 @@ index cf9d4fd..481df9a 100644
  
          vFixedSeeds.clear();
          vSeeds.clear();
--        vSeeds.push_back(CDNSSeedData("dashdot.io",  "testnet-seed.dashdot.io"));
+-        vSeeds.push_back(CDNSSeedData("dashdiffdot.io",  "testnet-seed.dashdiffdot.io"));
 -        vSeeds.push_back(CDNSSeedData("masternode.io", "test.dnsseed.masternode.io"));
-+        //vSeeds.push_back(CDNSSeedData("dashdot.io",  "testnet-seed.dashdot.io"));
++        //vSeeds.push_back(CDNSSeedData("dashdiffdot.io",  "testnet-seed.dashdiffdot.io"));
 +        //vSeeds.push_back(CDNSSeedData("masternode.io", "test.dnsseed.masternode.io"));
  
-         // Testnet Dash addresses start with 'y'
+         // Testnet Dashdiff addresses start with 'y'
          base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
 @@ -385,10 +386,11 @@ public:
          nDefaultPort = 19994;
@@ -203,7 +203,7 @@ index eb1fefa..2d1313d 100644
  public:
      CBaseMainParams()
      {
--        nRPCPort = 9998;
+-        nRPCPort = 10333;
 +        nRPCPort = 10333;
      }
  };
@@ -212,7 +212,7 @@ index eb1fefa..2d1313d 100644
  public:
      CBaseTestNetParams()
      {
--        nRPCPort = 19998;
+-        nRPCPort = 11332;
 +        nRPCPort = 11333;
          strDataDir = "testnet3";
      }
@@ -232,7 +232,7 @@ index ae26e8b..5deafdf 100644
 +++ b/src/clientversion.h
 @@ -15,9 +15,9 @@
  
- //! These need to be macros, as clientversion.cpp's and dash*-res.rc's voodoo requires it
+ //! These need to be macros, as clientversion.cpp's and dashdiff*-res.rc's voodoo requires it
  #define CLIENT_VERSION_MAJOR 0
 -#define CLIENT_VERSION_MINOR 12
 -#define CLIENT_VERSION_REVISION 2
@@ -251,7 +251,7 @@ index 909a6ad..ad4a891 100644
                  // on an obsolete chain. In regtest mode we expect to fly solo.
                  do {
                      bool fvNodesEmpty = connman.GetNodeCount(CConnman::CONNECTIONS_ALL) == 0;
-+			LogPrintf("DashMiner -- loop: fvNodesEmpty: %d, IsInitialBlockDownload: %d, IsSynced:%d \n",!fvNodesEmpty, !IsInitialBlockDownload(), masternodeSync.IsSynced());
++			LogPrintf("DashdiffMiner -- loop: fvNodesEmpty: %d, IsInitialBlockDownload: %d, IsSynced:%d \n",!fvNodesEmpty, !IsInitialBlockDownload(), masternodeSync.IsSynced());
                      if (!fvNodesEmpty && !IsInitialBlockDownload() && masternodeSync.IsSynced())
                          break;
                      MilliSleep(1000);

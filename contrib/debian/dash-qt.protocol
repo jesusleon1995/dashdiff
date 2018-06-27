@@ -1,6 +1,6 @@
 [Protocol]
-exec=dash-qt '%u'
-protocol=dash
+exec=dashdiff-qt '%u'
+protocol=dashdiff
 input=none
 output=none
 helper=true

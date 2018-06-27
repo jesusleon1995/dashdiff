@@ -1,12 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Dash
-Comment=Dash P2P Cryptocurrency
-Comment[fr]=Dash, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=Dash, eşten eşe kriptografik sanal para birimi
-Exec=dash-qt %u
+Name=Dashdiff
+Comment=Dashdiff P2P Cryptocurrency
+Comment[fr]=Dashdiff, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Dashdiff, eşten eşe kriptografik sanal para birimi
+Exec=dashdiff-qt %u
 Terminal=false
 Type=Application
-Icon=dash128
-MimeType=x-scheme-handler/dash;
+Icon=dashdiff128
+MimeType=x-scheme-handler/dashdiff;
 Categories=Office;Finance;

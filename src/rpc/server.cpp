@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
+// Copyright (c) 2014-2017 The Dashdiff Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -243,11 +243,11 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop Dash Core server.");
+            "\nStop Dashdiff Core server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "Dash Core server stopping";
+    return "Dashdiff Core server stopping";
 }
 
 /**
@@ -343,20 +343,20 @@ static const CRPCCommand vRPCCommands[] =
     { "hidden",             "resendwallettransactions", &resendwallettransactions, true},
 #endif
 
-    /* Dash features */
-    { "dash",               "masternode",             &masternode,             true  },
-    { "dash",               "masternodelist",         &masternodelist,         true  },
-    { "dash",               "masternodebroadcast",    &masternodebroadcast,    true  },
-    { "dash",               "gobject",                &gobject,                true  },
-    { "dash",               "getgovernanceinfo",      &getgovernanceinfo,      true  },
-    { "dash",               "getsuperblockbudget",    &getsuperblockbudget,    true  },
-    { "dash",               "voteraw",                &voteraw,                true  },
-    { "dash",               "mnsync",                 &mnsync,                 true  },
-    { "dash",               "spork",                  &spork,                  true  },
-    { "dash",               "getpoolinfo",            &getpoolinfo,            true  },
-    { "dash",               "sentinelping",           &sentinelping,           true  },
+    /* Dashdiff features */
+    { "dashdiff",               "masternode",             &masternode,             true  },
+    { "dashdiff",               "masternodelist",         &masternodelist,         true  },
+    { "dashdiff",               "masternodebroadcast",    &masternodebroadcast,    true  },
+    { "dashdiff",               "gobject",                &gobject,                true  },
+    { "dashdiff",               "getgovernanceinfo",      &getgovernanceinfo,      true  },
+    { "dashdiff",               "getsuperblockbudget",    &getsuperblockbudget,    true  },
+    { "dashdiff",               "voteraw",                &voteraw,                true  },
+    { "dashdiff",               "mnsync",                 &mnsync,                 true  },
+    { "dashdiff",               "spork",                  &spork,                  true  },
+    { "dashdiff",               "getpoolinfo",            &getpoolinfo,            true  },
+    { "dashdiff",               "sentinelping",           &sentinelping,           true  },
 #ifdef ENABLE_WALLET
-    { "dash",               "privatesend",            &privatesend,            false },
+    { "dashdiff",               "privatesend",            &privatesend,            false },
 
     /* Wallet */
     { "wallet",             "keepass",                &keepass,                true },
@@ -580,7 +580,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(const std::string& methodname, const std::string& args)
 {
-    return "> dash-cli " + methodname + " " + args + "\n";
+    return "> dashdiff-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(const std::string& methodname, const std::string& args)

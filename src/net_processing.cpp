@@ -45,7 +45,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Dash Core cannot be compiled without assertions."
+# error "Dashdiff Core cannot be compiled without assertions."
 #endif
 
 int64_t nTimeBestReceived = 0; // Used only to inform the wallet of when we last received a block
@@ -703,12 +703,12 @@ bool static AlreadyHave(const CInv& inv) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
     case MSG_BLOCK:
         return mapBlockIndex.count(inv.hash);
 
-    /* 
-        Dash Related Inventory Messages
+    /*
+        Dashdiff Related Inventory Messages
 
         --
 
-        We shouldn't update the sync times for each of the messages when we already have it. 
+        We shouldn't update the sync times for each of the messages when we already have it.
         We're going to be asking many nodes upfront for the full inventory list, so we'll get duplicates of these.
         We want to only update the time on new hits, so that we can time out appropriately if needed.
     */
@@ -1383,7 +1383,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             if (inv.type == MSG_BLOCK) {
                 UpdateBlockAvailability(pfrom->GetId(), inv.hash);
                 if (!fAlreadyHave && !fImporting && !fReindex && !mapBlocksInFlight.count(inv.hash)) {
-                    if (chainparams.DelayGetHeadersTime() != 0 && pindexBestHeader->GetBlockTime() < GetAdjustedTime() - chainparams.DelayGetHeadersTime()) {
+                    if (false & chainparams.DelayGetHeadersTime() != 0 && pindexBestHeader->GetBlockTime() < GetAdjustedTime() - chainparams.DelayGetHeadersTime()) {
                         // We are pretty far from being completely synced at the moment. If we would initiate a new
                         // chain of GETHEADERS/HEADERS now, we may end up downnloading the full chain from multiple
                         // peers at the same time, slowing down the initial sync. At the same time, we don't know

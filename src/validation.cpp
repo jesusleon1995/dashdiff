@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
+// Copyright (c) 2014-2017 The Dashdiff Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -52,7 +52,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Dash Core cannot be compiled without assertions."
+# error "Dashdiff Core cannot be compiled without assertions."
 #endif
 
 /**
@@ -1307,10 +1307,13 @@ bool IsInitialBlockDownload()
     if (chainActive.Tip() == NULL)
         return true;
     if (chainActive.Tip()->nChainWork < UintToArith256(chainParams.GetConsensus().nMinimumChainWork))
+        LogPrintf("IsInitialBlockDownload: nChainWork\n");
         return true;
     if (chainActive.Tip()->GetBlockTime() < (GetTime() - chainParams.MaxTipAge()))
+        LogPrintf("IsInitialBlockDownload: GetBlockTime\n");
         return true;
     lockIBDState = true;
+    LogPrintf("IsInitialBlockDownload: else");
     return false;
 }
 
@@ -1863,7 +1866,7 @@ bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, unsigne
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("dash-scriptch");
+    RenameThread("dashdiff-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -3958,7 +3961,7 @@ bool LoadBlockIndex()
     return true;
 }
 
-bool InitBlockIndex(const CChainParams& chainparams) 
+bool InitBlockIndex(const CChainParams& chainparams)
 {
     LOCK(cs_main);
 
